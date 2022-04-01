@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom'
 
 const Title = styled.header`
   width: 100%;
@@ -12,7 +13,17 @@ const Title = styled.header`
 `;
 
 const Header = () => {
-  return <Title>todo list</Title>;
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
+  return (
+  <>
+    <Title>todo list</Title>
+    <button onClick={handleLogout}>logout</button>
+  </>)
 };
 
 export default Header;
